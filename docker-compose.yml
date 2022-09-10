@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  host4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    privileged: true
+    networks:
+      route9:
+        ipv4_address: 192.168.9.2
+  router1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    privileged: true
+    networks:
+      route9:
+        ipv4_address: 192.168.9.10
+      route1:
+        ipv4_address: 192.168.1.10
+  host5:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    privileged: true
+    networks:
+      route1:
+        ipv4_address: 192.168.1.2
+  web:
+    image: nginx:latest
+    ports:
+      - 8080:8080
+    volumes:
+      - ./nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
+      - ./src:/var/www/html
+    networks:
+      route9:
+        ipv4_address: 192.168.9.30
+
+networks:
+  route9:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.9.0/24
+  route1:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.1.0/24
