@@ -19,6 +19,17 @@ services:
     networks:
       route9:
         ipv4_address: 192.168.9.10
+      route8:
+        ipv4_address: 192.168.8.20
+  router2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    privileged: true
+    networks:
+      route8:
+        ipv4_address: 192.168.8.10
       route1:
         ipv4_address: 192.168.1.10
   host5:
@@ -52,3 +63,8 @@ networks:
       driver: default
       config:
         - subnet: 192.168.1.0/24
+  route8:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.8.0/24
