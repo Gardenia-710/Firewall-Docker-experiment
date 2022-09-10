@@ -8,3 +8,4 @@ RUN apt install -y iproute2 \
     systemctl \
     traceroute \
     iputils-ping \
+    ssh \
