@@ -7,6 +7,11 @@ services:
       dockerfile: Dockerfile
     tty: true
     privileged: true
+    ports:
+      - "10022:22"
+    volumes:
+      - ./ssh/conf/ssh_config:/etc/ssh/ssh_config
+      - ./ssh/conf/sshd_config:/etc/ssh/sshd_config
     networks:
       route9:
         ipv4_address: 192.168.9.2
