@@ -9,3 +9,5 @@ RUN apt install -y iproute2 \
     traceroute \
     iputils-ping \
     ssh \
+    iperf3 \
+    ufw \
