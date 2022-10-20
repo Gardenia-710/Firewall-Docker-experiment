@@ -56,6 +56,21 @@ services:
     networks:
       route9:
         ipv4_address: 192.168.9.30
+  host10:
+    image: frrouting/frr:v8.3.1
+    networks:
+      route9:
+        ipv4_address: 192.168.9.100
+  host20:
+    image: frrouting/frr:v8.3.1
+    networks:
+      route1:
+        ipv4_address: 192.168.1.100
+  host30:
+    image: frrouting/frr:v8.3.1
+    networks:
+      route8:
+        ipv4_address: 192.168.8.100
 
 networks:
   route9:
